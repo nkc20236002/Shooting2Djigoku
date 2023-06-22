@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemController2 : MonoBehaviour
 {
@@ -8,14 +10,16 @@ public class ItemController2 : MonoBehaviour
     Vector3 pos;                // 出現位置
     int itemType;               // アイテムの種類
     float speed;                // 落下速度
+    public Image timeGauge;
+    public static float lastTime;
 
     void Start()
     {
-        itemType = Random.Range(0, 3);  // アイテムの種類0～2
+        itemType = Random.Range(0, 4);  // アイテムの種類0～3
         speed = 5f;                     // 落下速度
 
-        // itemType=0:黄 / itemType=1:緑 / itemType=2:青　
-        Color[] col = { Color.yellow, Color.green, Color.blue };
+        // itemType=0:黄 / itemType=1:緑 / itemType=2:青　/ itemType=3:マゼンタ
+        Color[] col = { Color.yellow, Color.green, Color.blue, Color.magenta };
         spRender = GetComponent<SpriteRenderer>();
         spRender.color = col[itemType];
 
@@ -57,6 +61,10 @@ public class ItemController2 : MonoBehaviour
             {
                 pCon.Speed     = 5;
                 pCon.ShotLevel = 0;
+            }
+            else if (itemType == 3)  // 黄 : 時間60減少
+            {
+                GameDirector.lastTime -= 60f;
             }
 
             // 自分（アイテム）削除
