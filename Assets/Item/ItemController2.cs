@@ -15,11 +15,11 @@ public class ItemController2 : MonoBehaviour
 
     void Start()
     {
-        itemType = Random.Range(0, 4);  // アイテムの種類0～3
+        itemType = Random.Range(0, 5);  // アイテムの種類0～4
         speed = 5f;                     // 落下速度
 
-        // itemType=0:黄 / itemType=1:緑 / itemType=2:青　/ itemType=3:マゼンタ
-        Color[] col = { Color.yellow, Color.green, Color.blue, Color.magenta };
+        // itemType=0:黄 / itemType=1:緑 / itemType=2:青　/ itemType=3:マゼンタ/ itemType=4:シアン
+        Color[] col = { Color.yellow, Color.green, Color.blue, Color.magenta, Color.cyan };
         spRender = GetComponent<SpriteRenderer>();
         spRender.color = col[itemType];
 
@@ -62,9 +62,13 @@ public class ItemController2 : MonoBehaviour
                 pCon.Speed     = 5;
                 pCon.ShotLevel = 0;
             }
-            else if (itemType == 3)  // 黄 : 時間60減少
+            else if (itemType == 3)  // マゼンタ : 時間60減少
             {
                 GameDirector.lastTime -= 60f;
+            }
+            else if (itemType == 4)  // シアン : 時間5減少
+            {
+                GameDirector.lastTime -= 5f;
             }
 
             // 自分（アイテム）削除

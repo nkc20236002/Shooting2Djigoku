@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyGenerator : MonoBehaviour
 {
-    public GameObject EnemyPre; // 敵のプレハブを保存する変数
+    public GameObject Enemy2_0; // 敵のプレハブを保存する変数
     float span = 1;             // 敵を出す間隔（秒）
     float delta = 0;            // 時間計算用変数
 
@@ -19,7 +19,7 @@ public class EnemyGenerator : MonoBehaviour
             span -= (span >= 0.5f)? 0.01f : 0f;  // スパンを少しずつ短くする
 
             // 敵のプレハブをヒエラルキーに登場させる
-            GameObject go = Instantiate(EnemyPre);
+            GameObject go = Instantiate(Enemy2_0);
             int py = Random.Range(-5, 6);
             go.transform.position = new Vector3(10, py, 0);
         }
